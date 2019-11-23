@@ -18,6 +18,12 @@ RSpec.describe MyersDiff do
         expect(subject.size).to eq 8
       end
     end
+    describe 'abcd bde' do
+      subject { MyersDiff.new.diff('abcd', 'bde') }
+      it do
+        expect(subject.size).to eq 5
+      end
+    end
   end
 
   describe '#push_component' do

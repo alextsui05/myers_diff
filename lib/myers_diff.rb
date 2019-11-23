@@ -151,7 +151,7 @@ class MyersDiff
         component[:value] = join(old_string[old_pos, component[:count]])
         old_pos += component[:count]
 
-        if component_pos && components[component_pos - 1][:added]
+        if component_pos && 0 <= component_pos - 1 && components[component_pos - 1][:added]
           tmp = components[component_pos - 1]
           components[component_pos - 1] = components[component_pos]
           components[component_pos] = tmp
