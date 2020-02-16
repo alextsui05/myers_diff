@@ -24,6 +24,14 @@ RSpec.describe MyersDiff do
         expect(subject.size).to eq 5
       end
     end
+    describe 'french' do
+      let(:s1) { "Toutefois, ils sont consciemment sûrs que ce n'est pas possible d'être donner les conseils par leur parents à leur propre soucies dont les problèmes sexuels ou sentimentaux: ça se compose la possibilité de blesser leur honneur ou leur privée." }
+      let(:s2) { "Toutefois, les jeunes ont généralement conscience du fait qu'ils ne peuvent pas tout partager avec leur parents: Les soucis d'ordre sentimental ou sexuel font partie de leur vie privée et ne sont pas des sujets qu'ils souhaitent aborder dans leur famille." }
+      subject { MyersDiff.new.diff(s1, s2) }
+      it do
+        expect(subject.size).to be_truthy
+      end
+    end
   end
 
   describe '#push_component' do
