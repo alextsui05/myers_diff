@@ -26,6 +26,14 @@ diff.diff('abcabba', 'cbabac')
 
 # Changelog
 
+## 0.1.2
+
+* Optimization: Stop using Marshal for cloning paths
+
+## 0.1.1
+
+* Fix bug in `#build_values`
+
 ## 0.1.0
 
 * Minimally port the base Myer's diff algorithm to Ruby.
