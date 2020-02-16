@@ -185,6 +185,7 @@ class MyersDiff
   def clone_path(path_hash)
     # best_path[0] = { new_pos: -1, components: [] }
     #Marshal.load(Marshal.dump(path_hash))
-    { new_pos: path_hash[:new_pos], components: path_hash[:components].map { |h| h.dup } }
+    #{ new_pos: path_hash[:new_pos], components: path_hash[:components].map { |h| h.dup } }
+    { new_pos: path_hash[:new_pos], components: path_hash[:components].dup }
   end
 end
