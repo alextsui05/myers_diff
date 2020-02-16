@@ -1,3 +1,7 @@
+# 0.1.2 - 2020/02/16
+
+* Optimization: Stop using Marshal for cloning paths
+
 # 0.1.1 - 2019/11/23
 
 - Fixed a bug in `build_values`

@@ -24,20 +24,6 @@ diff.diff('abcabba', 'cbabac')
  => [{:count=>1, :added=>nil, :removed=>true, :value=>"a"}, {:count=>1, :added=>true, :removed=>nil, :value=>"c"}, {:count=>1, :value=>"b"}, {:count=>1, :added=>nil, :removed=>true, :value=>"c"}, {:count=>2, :value=>"ab"}, {:count=>1, :added=>nil, :removed=>true, :value=>"b"}, {:count=>1, :value=>"a"}, {:count=>1, :added=>true, :removed=>nil, :value=>"c"}]
 ```
 
-# Changelog
-
-## 0.1.2
-
-* Optimization: Stop using Marshal for cloning paths
-
-## 0.1.1
-
-* Fix bug in `#build_values`
-
-## 0.1.0
-
-* Minimally port the base Myer's diff algorithm to Ruby.
-
 # License
 
 [MIT](https://opensource.org/licenses/MIT)
