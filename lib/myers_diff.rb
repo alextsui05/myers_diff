@@ -35,7 +35,7 @@ class MyersDiff
         end
 
         base_path = if !can_add || (can_remove && add_path[:new_pos] < remove_path[:new_pos])
-          p = clone(remove_path)
+          p = clone_path(remove_path)
           push_component(p[:components], nil, true)
           p
         else
@@ -72,7 +72,7 @@ class MyersDiff
   def push_component(components, added, removed)
     last = components.last
     if last && last[:added] == added && last[:removed] == removed
-      components[-1] = clone(last).tap { |this| this[:count] += 1 }
+      components[-1] = shallow_clone_hash(last).tap { |this| this[:count] += 1 }
     else
       components.push(count: 1, added: added, removed: removed)
     end
@@ -175,5 +175,16 @@ class MyersDiff
 
   def clone(o)
     Marshal.load(Marshal.dump(o))
+  end
+
+  def shallow_clone_hash(h)
+    h.dup
+    #Marshal.load(Marshal.dump(h))
+  end
+
+  def clone_path(path_hash)
+    # best_path[0] = { new_pos: -1, components: [] }
+    #Marshal.load(Marshal.dump(path_hash))
+    { new_pos: path_hash[:new_pos], components: path_hash[:components].map { |h| shallow_clone_hash(h) } }
   end
 end
