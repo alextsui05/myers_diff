@@ -1,9 +1,9 @@
 require 'myers_diff'
 
-RSpec.describe MyersDiff do
+RSpec.describe MyersDiff::CharDiff do
   describe '#diff' do
     describe 'a, b' do
-      subject { MyersDiff.new.diff('a', 'b') }
+      subject { described_class.new.diff('a', 'b') }
       it do
         expect(subject.size).to eq 2
         expect(subject.first[:removed]).to be_truthy
@@ -13,13 +13,13 @@ RSpec.describe MyersDiff do
       end
     end
     describe 'abcabba cbabac' do
-      subject { MyersDiff.new.diff('abcabba', 'cbabac') }
+      subject { described_class.new.diff('abcabba', 'cbabac') }
       it do
         expect(subject.size).to eq 8
       end
     end
     describe 'abcd bde' do
-      subject { MyersDiff.new.diff('abcd', 'bde') }
+      subject { described_class.new.diff('abcd', 'bde') }
       it do
         expect(subject.size).to eq 5
       end
@@ -27,7 +27,7 @@ RSpec.describe MyersDiff do
     describe 'french' do
       let(:s1) { "Toutefois, ils sont consciemment sûrs que ce n'est pas possible d'être donner les conseils par leur parents à leur propre soucies dont les problèmes sexuels ou sentimentaux: ça se compose la possibilité de blesser leur honneur ou leur privée." }
       let(:s2) { "Toutefois, les jeunes ont généralement conscience du fait qu'ils ne peuvent pas tout partager avec leur parents: Les soucis d'ordre sentimental ou sexuel font partie de leur vie privée et ne sont pas des sujets qu'ils souhaitent aborder dans leur famille." }
-      subject { MyersDiff.new.diff(s1, s2) }
+      subject { described_class.new.diff(s1, s2) }
       it do
         expect(subject.size).to be_truthy
       end
@@ -38,7 +38,7 @@ RSpec.describe MyersDiff do
     let(:components) { [ { count: 1, added: true, removed: nil } ] }
     let(:added) { true }
     let(:removed) { nil }
-    before { MyersDiff.new.push_component(components, added, removed) }
+    before { described_class.new.push_component(components, added, removed) }
     context 'when added' do
       it do
         expect(components.last[:count]).to eq 2
