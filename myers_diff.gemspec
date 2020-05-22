@@ -1,6 +1,9 @@
+$LOAD_PATH << File.expand_path('lib', __dir__)
+require 'myers_diff/version'
+
 Gem::Specification.new do |s|
   s.name = 'myers_diff'
-  s.version = '1.0.0'
+  s.version = MyersDiff::VERSION
   s.date = '2020-05-22'
   s.summary = 'Implementation of Myers 1986 text diff algorithm'
   s.description = 'Implementation of Myers 1986 text diff algorithm'
