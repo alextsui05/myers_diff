@@ -1,3 +1,7 @@
+# 1.0.0 - 2020/05/22
+
+* Rename the diffing class `CharDiff` and put it under `MyersDiff` namespace
+
 # 0.1.2 - 2020/02/16
 
 * Optimization: Stop using Marshal for cloning paths
