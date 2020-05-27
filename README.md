@@ -27,3 +27,13 @@ diff.diff('abcabba', 'cbabac')
 # License
 
 [MIT](https://opensource.org/licenses/MIT)
+
+# Releasing
+
+* Update version file
+* Run `bundle install`
+* Commit changes
+* Add tag `git tag -s vVERSION`
+* `git push && git push --tags`
+* `gem build myers_diff.gemspec`
+* `gem push myers_diff-VERSION.gemspec`

@@ -1,3 +1,8 @@
+# 1.1.0 - 2020/05/27
+
+* Add `WordDiff`, which works like `CharDiff` except uses space-delimited words
+  as the unit of difference.
+
 # 1.0.0 - 2020/05/22
 
 * Rename the diffing class `CharDiff` and put it under `MyersDiff` namespace
