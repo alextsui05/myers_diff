@@ -1,5 +1,8 @@
 module MyersDiff
   class WordDiff
+    BOUNDARIES_REGEX = /(\s+|[()\[\]{}'"]|\b)/.freeze
+    EXTENDED_WORD_CHARS_REGEX = /^[a-zA-Z\u{C0}-\u{FF}\u{D8}-\u{F6}\u{F8}-\u{2C6}\u{2C8}-\u{2D7}\u{2DE}-\u{2FF}\u{1E00}-\u{1EFF}]+$/u.freeze
+
     def diff(s1, s2, **options)
       old_string = cast_input(s1)
       new_string = cast_input(s2)
@@ -117,11 +120,26 @@ module MyersDiff
     end
 
     def tokenize(str)
-      str.split(' ')
+      tokens = str.split(BOUNDARIES_REGEX)
+
+      i = 0
+      while i < tokens.size - 1
+        if tokens[i + 1].empty? && !tokens[i + 2].empty? &&
+            EXTENDED_WORD_CHARS_REGEX.match?(tokens[i]) &&
+            EXTENDED_WORD_CHARS_REGEX.match?(tokens[i + 2])
+          tokens[i] += tokens[i + 2]
+          tokens.delete_at(i + 1)
+          tokens.delete_at(i + 1)
+          i -= 1
+        end
+        i += 1
+      end
+
+      tokens
     end
 
     def join(chars)
-      chars.join(' ')
+      chars.join('')
     end
 
     # new_string - tokenized string i.e. array of strings
