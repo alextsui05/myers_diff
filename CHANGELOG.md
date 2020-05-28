@@ -1,3 +1,9 @@
+# 1.1.1 - 2020/05/28
+
+* Align `WordDiff` behavior to [jsdiff](https://github.com/kpdecker/jsdiff)'s behavior
+  * Preserves whitespace when recombining tokens
+  * Behaves nicely around symbols, extended Latin script
+
 # 1.1.0 - 2020/05/27
 
 * Add `WordDiff`, which works like `CharDiff` except uses space-delimited words

@@ -4,7 +4,7 @@ require 'myers_diff/version'
 Gem::Specification.new do |s|
   s.name = 'myers_diff'
   s.version = MyersDiff::VERSION
-  s.date = '2020-05-27'
+  s.date = '2020-05-28'
   s.summary = 'Implementation of Myers 1986 text diff algorithm'
   s.description = 'Implementation of Myers 1986 text diff algorithm '\
                   'that started as a port of the jsdiff project with '\

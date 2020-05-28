@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    myers_diff (1.1.0)
+    myers_diff (1.1.1)
 
 GEM
   remote: https://rubygems.org/
