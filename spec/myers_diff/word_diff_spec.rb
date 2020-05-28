@@ -37,7 +37,10 @@ RSpec.describe MyersDiff::WordDiff do
       let(:s2) { "I don't remember memories accurately when I was a child" }
 
       it do
-        expect(subject.size).to eq(5)
+        expect(subject.size).to eq(9)
+        expect(subject[0][:value]).to eq("I don't remember ")
+        expect(subject.find { |chunk| chunk[:removed] }[:value]).to eq('with')
+        expect(subject.find { |chunk| chunk[:added] }[:value]).to eq('memories')
       end
     end
 
@@ -46,7 +49,11 @@ RSpec.describe MyersDiff::WordDiff do
       let(:s2) { "I have no cousins." }
 
       it do
-        expect(subject.size).to eq(3)
+        expect(subject.size).to eq(4)
+        expect(subject.first[:value]).to eq('I have no ')
+        expect(subject.find { |chunk| chunk[:removed] }[:value]).to eq('cousin')
+        expect(subject.find { |chunk| chunk[:added] }[:value]).to eq('cousins')
+        expect(subject.last[:value]).to eq('.')
       end
     end
 
@@ -55,7 +62,9 @@ RSpec.describe MyersDiff::WordDiff do
       let(:s2) { "I prefer to work alone because I can work at my own pace." }
 
       it do
-        expect(subject.size).to eq(6)
+        expect(subject.size).to eq(7)
+        expect(subject.find { |chunk| chunk[:removed] }[:value]).to eq('on')
+        expect(subject.find { |chunk| chunk[:added] }[:value]).to eq('at')
       end
     end
 
@@ -64,7 +73,17 @@ RSpec.describe MyersDiff::WordDiff do
       let(:s2) { "I can share them on the Internet." }
 
       it do
-        expect(subject.size).to eq(5)
+        expect(subject.size).to eq(10)
+        expect(subject.last[:value]).to eq('on the Internet.')
+      end
+    end
+
+    context "when 'A miracle' vs 'A (miracle)'" do
+      let(:s1) { "A miracle" }
+      let(:s2) { "A (miracle)" }
+
+      it do
+        expect(subject.find { |chunk| chunk[:added] }[:value]).to eq('(')
       end
     end
   end
